@@ -1,7 +1,8 @@
 const inpCouleur = document.querySelectorAll('.inp-Couleur');
 const inpRange = document.querySelector('.inp-range');
 const fond = document.body;
-const btns = document.querySelectorAll('button')
+const btns = document.querySelectorAll('button');
+const containeCouleur= document.querySelector('.container-couleur')
 
 // initialisation
 
@@ -35,7 +36,7 @@ function rajouteEnleve(e) {
     const allInput = document.querySelectorAll('.inp-Couleur');
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-    if (e.target.className === "+") {
+    if (e.target.className === "plus") {
         if (allInput.length > 8) {
             return;
         }
@@ -44,5 +45,15 @@ function rajouteEnleve(e) {
         nvCouleur.setAttribute('class', 'inp-Couleur');
         nvCouleur.setAttribute('data-index', index);
         nvCouleur.setAttribute('maxlength', 7);
+        nvCouleur.value = `#${randomColor.toUpperCase()}`;
+        nvCouleur.style.background = `#${randomColor}`;
+        containeCouleur.appendChild(nvCouleur)
+        
+        valCouleur.push(`#${randomColor.toUpperCase()}`)
+
+
+        //MAJ du fond
+        fond.style.background = `linear-gradient(${inclinaison}deg, ${valCouleur})`;
+        index++;
     }
 }
